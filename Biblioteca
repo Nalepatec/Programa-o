@@ -1,0 +1,92 @@
+lista_livro = []
+id_global = 0
+
+
+# ______________cadastrar_livro
+def cadastrar_livro(id):
+    print('-----Menu Cadastro de Livros----')
+    print('Id do Livro: {}'.format(id))
+    nome = input('Informe o nome do livro >>> ')
+    autor = input('Informe o autor do livro >>> ')
+    editora = input('Informe a editora do livro >>> ')
+    dicionario_livro = {'Id': id,
+                        'Nome': nome,
+                        'Autor': autor,
+                        'Editora': editora}
+    lista_livro.append(dicionario_livro.copy())
+
+
+def consultar_livro():
+    print('-----Menu Consultar Livro-----')
+    while True:
+        menu_consultar = input('Escolha a opção desejada\n' +
+                               '1 - Consultar Todos \n' +
+                               '2 - Consultar por Id \n' +
+                               '3 - Consultar por Autor \n' +
+                               '4 - Retornar ao menu \n >>> ')
+        if menu_consultar == '1':
+            print('Você escolheu consultar todos os livros')
+            print('---------------------------------------')
+            for livro in lista_livro:
+                for key, value in livro.items():
+                    print('{}: {}'.format(key, value))
+            print('---------------------------------------')
+        elif menu_consultar == '2':
+            print('Você escolheu consultar por Id do livro')
+            id_livro = int(input('Informe o Id do Livro desejado >>>> '))
+            print('---------------------------------------')
+            for livro in lista_livro:
+                if livro['Id'] == id_livro:
+                    for key, value in livro.items():
+                        print('{}: {}'.format(key, value))
+                        print('---------------------------------------')
+        elif menu_consultar == '3':
+            print('Você escolheu consultar por autor do livro')
+            autor_livro = input('Informe o autor do Livro desejado >>>> ')
+            print('---------------------------------------')
+            for livro in lista_livro:
+                if livro['Autor'] == autor_livro:
+                    for key, value in livro.items():
+                        print('{}: {}'.format(key, value))
+            print('---------------------------------------')
+        elif menu_consultar == '4':
+            print('Você escolheu retornar ao menu principal')
+            return
+        else:
+            print('Opção invalida, tente novamente.')
+            continue
+
+
+def remover_livro():
+    print('-----Menu Remover-----')
+    menu_remover = int(input('Informe o Id do livro que deseja remover  >>> '))
+    print('---------------------------------------')
+    for livro in lista_livro:
+        if livro['Id'] == menu_remover:
+            lista_livro.remove(livro)
+            print('Livro removido com exito.')
+    print('---------------------------------------')
+
+
+print('     +--------------------------------------------------------+\n' +
+      '     |Bem-vindo a Livraria do Felipe willian nalepa dos santos|\n' +
+      '     +--------------------------------------------------------+\n')
+while True:
+    menu_principal = input('Escolha a opção desejada\n' +
+                           '1 - Cadastrar Livro \n' +
+                           '2 - Consultar Livro \n' +
+                           '3 - Remover Livro \n' +
+                           '4 - Encerrar Programa \n >> ')
+    if menu_principal == '1':
+        id_global += 1
+        cadastrar_livro(id_global)
+    elif menu_principal == '2':
+        consultar_livro()
+    elif menu_principal == '3':
+        remover_livro()
+    elif menu_principal == '4':
+        break
+    else:
+        print('Opção invalida, tente novamente.')
+        continue
+# ___________________________________
